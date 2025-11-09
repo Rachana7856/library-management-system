@@ -31,6 +31,4 @@ The system is modeled around **Process Scheduling**, where:
 - **Backend:** Python (Flask Framework)  
 - **Core Logic:** Process & Resource Management Algorithms (OS Concepts)
 
----
 
-## 📂 Folder Highlights
