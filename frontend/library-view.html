@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibraryOS - Library View</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="library-container">
+        <!-- Header -->
+        <header class="library-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <h1>LibraryOS - Interactive View</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="overview">
+                            <i class="fas fa-th"></i>
+                            Overview
+                        </button>
+                        <button class="view-btn" data-view="pc">
+                            <i class="fas fa-laptop"></i>
+                            PC Area
+                        </button>
+                        <button class="view-btn" data-view="seating">
+                            <i class="fas fa-chair"></i>
+                            Seating
+                        </button>
+                        <button class="view-btn" data-view="books">
+                            <i class="fas fa-book"></i>
+                            Books
+                        </button>
+                    </div>
+                    <button class="back-btn" onclick="window.location.href='admin-dashboard.html'">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Dashboard
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Overview -->
+        <div class="stats-overview">
+            <div class="stat-card real-time">
+                <div class="stat-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="pc-allocated-count">0</h3>
+                    <p>PCs Allocated</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill pc-fill" style="width: 0%"></div>
+                        </div>
+                        <span id="pc-usage">0/20</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card real-time">
+                <div class="stat-icon">
+                    <i class="fas fa-chair"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="seat-allocated-count">0</h3>
+                    <p>Seats Occupied</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill seat-fill" style="width: 0%"></div>
+                        </div>
+                        <span id="seat-usage">0/50</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card real-time">
+                <div class="stat-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="book-allocated-count">0</h3>
+                    <p>Books Issued</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill book-fill" style="width: 0%"></div>
+                        </div>
+                        <span id="book-usage">0/100</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card real-time">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="total-students-count">0</h3>
+                    <p>Active Students</p>
+                    <div class="live-indicator">
+                        <span class="pulse"></span>
+                        Live
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Visualization Area -->
+        <main class="visualization-area">
+            <!-- Overview View -->
+            <div class="view-content active" id="overview-view">
+                <div class="library-map">
+                    <div class="map-section pc-area">
+                        <h3>🖥️ PC Zone</h3>
+                        <div class="resource-grid" id="pc-grid">
+                            <!-- PCs will be dynamically generated -->
+                        </div>
+                    </div>
+
+                    <div class="map-section seating-area">
+                        <h3>💺 Study Area</h3>
+                        <div class="seating-layout" id="seating-grid">
+                            <!-- Seats will be dynamically generated -->
+                        </div>
+                    </div>
+
+                    <div class="map-section book-area">
+                        <h3>📚 Book Section</h3>
+                        <div class="book-shelves" id="book-shelves">
+                            <!-- Books will be dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PC Area View -->
+            <div class="view-content" id="pc-view">
+                <div class="detail-view">
+                    <h2>PC Workstations</h2>
+                    <div class="resource-grid detailed" id="detailed-pc-grid">
+                        <!-- Detailed PC view -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seating Area View -->
+            <div class="view-content" id="seating-view">
+                <div class="detail-view">
+                    <h2>Study Seating Arrangement</h2>
+                    <div class="seating-layout detailed" id="detailed-seating-grid">
+                        <!-- Detailed seating view -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books View -->
+            <div class="view-content" id="books-view">
+                <div class="detail-view">
+                    <h2>Book Collection</h2>
+                    <div class="books-collection" id="detailed-books-grid">
+                        <!-- Detailed books view -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Live Activity Feed -->
+        <aside class="activity-sidebar">
+            <div class="sidebar-header">
+                <h3>📊 Live Activity</h3>
+                <div class="refresh-controls">
+                    <button id="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="activity-feed" id="activity-feed">
+                <!-- Activity items will be populated here -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- Resource Details Modal -->
+    <div class="modal" id="resource-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Resource Details</h3>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/visualization.js"></script>
+    <script src="js/api.js"></script>
+</body>
+</html>
